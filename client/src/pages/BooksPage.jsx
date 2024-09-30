@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import BookCard from '../component/BookCard';
+import { apiBaseUrl } from '../utils/api';
 
 const BooksPage = () => {
   const [books, setBooks] = useState([]);
@@ -15,7 +16,7 @@ const BooksPage = () => {
 
   const fetchBooks = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/getAllbooks`);
+      const response = await axios.get(`apiBaseUrl/api/getAllbooks`);
       setBooks(response.data);
     } catch (error) {
       console.error('Error fetching books', error);
@@ -30,7 +31,7 @@ const BooksPage = () => {
     }
 
     try {
-      const response = await axios.get(`http://localhost:3000/search`, {
+      const response = await axios.get(`apiBaseUrl/search`, {
         params: { bookName: searchTerm },
       });
       setBooks(response.data);
@@ -42,7 +43,7 @@ const BooksPage = () => {
   // Fetch books by rent range
   const handleRentFilter = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/rent`, {
+      const response = await axios.get(`apiBaseUrl/rent`, {
         params: { minRent, maxRent },
       });
       setBooks(response.data);
@@ -59,7 +60,7 @@ const BooksPage = () => {
     }
 
     try {
-      const response = await axios.get(`http://localhost:3000/category`, {
+      const response = await axios.get(`apiBaseUrl/category`, {
         params: { category },
       });
       setBooks(response.data);
@@ -71,7 +72,7 @@ const BooksPage = () => {
   // Combined filter
   const handleCombinedFilter = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/filter`, {
+      const response = await axios.get(`apiBaseUrl/filter`, {
         params: {
           category,
           bookName: searchTerm,

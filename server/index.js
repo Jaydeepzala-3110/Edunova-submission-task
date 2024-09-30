@@ -15,7 +15,6 @@ DBconnection();
 
 const corsOptions = {
     origin: '*',
-    credential : true
 };
 
 // cors 

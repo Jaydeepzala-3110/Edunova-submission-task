@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { apiBaseUrl } from '../utils/api';
 
 const TotalRent = () => {
   const [bookId, setBookId] = useState('');
@@ -8,7 +9,7 @@ const TotalRent = () => {
 
   const handleTotalRent = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/total-rent?bookId=${bookId}`);
+      const response = await axios.get(`apiBaseUrl/total-rent?bookId=${bookId}`);
       setTransactionResult(`Total rent: ${response.data.totalRent || 0}`);
       setError('');
     } catch (error) {

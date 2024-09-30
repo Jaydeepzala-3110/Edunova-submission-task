@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { apiBaseUrl } from '../utils/api';
+
 
 const IssueBook = () => {
     const [bookId, setBookId] = useState('');
@@ -10,7 +12,7 @@ const IssueBook = () => {
 
     const handleIssueBook = async () => {
         try {
-            const response = await axios.post('http://localhost:3000/issue', { bookId, userId, issueDate });
+            const response = await axios.post('apiBaseUrl/issue', { bookId, userId, issueDate });
             setTransactionResult(response.data.msg || 'Book issued successfully.');
             setError('');
         } catch (error) {

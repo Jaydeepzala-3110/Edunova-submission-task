@@ -2,6 +2,7 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import { apiBaseUrl } from '../utils/api';
 
 
 const RegisterPage = () => {
@@ -17,7 +18,7 @@ const RegisterPage = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/register', { name, email, password });
+      const response = await axios.post('apiBaseUrl/register', { name, email, password });
       if (response.status === 201) {
         setUser(response.data.user);
         navigate('/books');

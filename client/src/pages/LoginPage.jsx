@@ -1,10 +1,11 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext'; // Adjust the path as needed
+import { useAuth } from '../context/AuthContext'; 
+import { apiBaseUrl } from '../utils/api';
 
 const LoginPage = () => {
-  const { login } = useAuth(); // Get login function from context
+  const { login } = useAuth(); 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -14,7 +15,7 @@ const LoginPage = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/login', { email, password });
+      const response = await axios.post('apiBaseUrl/login', { email, password });
       console.log('Response:', response);
       if (response.status === 200) {
         login(response.data.user); 

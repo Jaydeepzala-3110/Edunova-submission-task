@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { apiBaseUrl } from '../utils/api';
+
 
 const ViewIssuedBooks = () => {
     const [userId, setUserId] = useState('');
@@ -8,7 +10,7 @@ const ViewIssuedBooks = () => {
 
     const handleViewIssuedBooks = async () => {
         try {
-            const response = await axios.get(`http://localhost:3000/user-books?userId=${userId}`);
+            const response = await axios.get(`apiBaseUrl/user-books?userId=${userId}`);
             setIssuedBooks(response.data || []);
             setError('');
         } catch (error) {

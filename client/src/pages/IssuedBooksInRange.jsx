@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { apiBaseUrl } from '../utils/api';
+
 
 const IssuedBooksInRange = () => {
     const [startDate, setStartDate] = useState('');
@@ -9,7 +11,7 @@ const IssuedBooksInRange = () => {
 
     const handleIssuedBooksInRange = async () => {
         try {
-            const response = await axios.get('http://localhost:3000/date-range', {
+            const response = await axios.get('apiBaseUrl/date-range', {
                 params: {
                     startDate,
                     endDate,
