@@ -11,7 +11,7 @@ const IssuedBooksInRange = () => {
 
     const handleIssuedBooksInRange = async () => {
         try {
-            const response = await axios.get('apiBaseUrl/date-range', {
+            const response = await axios.get(`${apiBaseUrl}/date-range`, {
                 params: {
                     startDate,
                     endDate,

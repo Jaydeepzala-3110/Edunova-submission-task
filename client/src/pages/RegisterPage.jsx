@@ -18,7 +18,7 @@ const RegisterPage = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('apiBaseUrl/register', { name, email, password });
+      const response = await axios.post(`${apiBaseUrl}/register`, { name, email, password });
       if (response.status === 201) {
         setUser(response.data.user);
         navigate('/books');

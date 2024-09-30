@@ -12,7 +12,7 @@ const IssueBook = () => {
 
     const handleIssueBook = async () => {
         try {
-            const response = await axios.post('apiBaseUrl/issue', { bookId, userId, issueDate });
+            const response = await axios.post(`${apiBaseUrl}/issue`, { bookId, userId, issueDate });
             setTransactionResult(response.data.msg || 'Book issued successfully.');
             setError('');
         } catch (error) {

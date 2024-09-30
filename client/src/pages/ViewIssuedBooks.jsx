@@ -10,7 +10,7 @@ const ViewIssuedBooks = () => {
 
     const handleViewIssuedBooks = async () => {
         try {
-            const response = await axios.get(`apiBaseUrl/user-books?userId=${userId}`);
+            const response = await axios.get(`${apiBaseUrl}/user-books?userId=${userId}`);
             setIssuedBooks(response.data || []);
             setError('');
         } catch (error) {

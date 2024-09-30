@@ -9,7 +9,7 @@ const TotalRent = () => {
 
   const handleTotalRent = async () => {
     try {
-      const response = await axios.get(`apiBaseUrl/total-rent?bookId=${bookId}`);
+      const response = await axios.get(`${apiBaseUrl}/total-rent?bookId=${bookId}`);
       setTransactionResult(`Total rent: ${response.data.totalRent || 0}`);
       setError('');
     } catch (error) {

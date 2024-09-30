@@ -16,7 +16,7 @@ const BooksPage = () => {
 
   const fetchBooks = async () => {
     try {
-      const response = await axios.get(`apiBaseUrl/api/getAllbooks`);
+      const response = await axios.get(`${apiBaseUrl}/api/getAllbooks`);
       setBooks(response.data);
     } catch (error) {
       console.error('Error fetching books', error);
@@ -31,7 +31,7 @@ const BooksPage = () => {
     }
 
     try {
-      const response = await axios.get(`apiBaseUrl/search`, {
+      const response = await axios.get(`${apiBaseUrl}/search`, {
         params: { bookName: searchTerm },
       });
       setBooks(response.data);
@@ -43,7 +43,7 @@ const BooksPage = () => {
   // Fetch books by rent range
   const handleRentFilter = async () => {
     try {
-      const response = await axios.get(`apiBaseUrl/rent`, {
+      const response = await axios.get(`${apiBaseUrl}/rent`, {
         params: { minRent, maxRent },
       });
       setBooks(response.data);
@@ -55,12 +55,12 @@ const BooksPage = () => {
   // Fetch books by category
   const handleCategoryFilter = async () => {
     if (!category) {
-      fetchBooks(); // Fetch all books if no category
+      fetchBooks(); 
       return;
     }
 
     try {
-      const response = await axios.get(`apiBaseUrl/category`, {
+      const response = await axios.get(`${apiBaseUrl}/category`, {
         params: { category },
       });
       setBooks(response.data);
@@ -72,7 +72,7 @@ const BooksPage = () => {
   // Combined filter
   const handleCombinedFilter = async () => {
     try {
-      const response = await axios.get(`apiBaseUrl/filter`, {
+      const response = await axios.get(`${apiBaseUrl}/filter`, {
         params: {
           category,
           bookName: searchTerm,

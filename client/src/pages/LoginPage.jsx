@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext'; 
+import { useAuth } from '../context/AuthContext';
 import { apiBaseUrl } from '../utils/api';
 
 const LoginPage = () => {
-  const { login } = useAuth(); 
+  const { login } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -15,10 +15,10 @@ const LoginPage = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('apiBaseUrl/login', { email, password });
+      const response = await axios.post(`${apiBaseUrl}/login`, { email, password });
       console.log('Response:', response);
       if (response.status === 200) {
-        login(response.data.user); 
+        login(response.data.user);
         navigate('/books');
       } else {
         setError('Invalid credentials, please try again.');
