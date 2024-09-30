@@ -33,7 +33,6 @@ export const searchBooks = async (req, res) => {
 
         const books = await BooksModel.find({ bookName: { $regex: bookName, $options: 'i' } });
 
-        console.log(books);
         res.status(200).json(books);
     } catch (error) {
         res.status(500).json({ message: 'Error searching books', error: error.message });
@@ -69,7 +68,6 @@ export const filterBooks = async (req, res) => {
 export const getAllBooks = async (req, res) => {
     try {
         const books = await BooksModel.find();
-        console.log(books.slice(0, 2))
         if (!books.length) {
             return res.status(404).json({ message: 'No books found' });
         }

@@ -5,6 +5,9 @@ import booksRoutes from "./routes/books.route.js"; // Import routes
 import transactionRoutes from "./routes/transaction.router.js"
 import userRoutes from "./routes/user.route.js"
 import cors from "cors"
+import path from "path"
+import { fileURLToPath } from 'url';
+
 dotenv.config();
 
 
@@ -15,6 +18,7 @@ DBconnection();
 
 const corsOptions = {
     origin: '*',
+    credentials: true
 };
 
 // cors 
@@ -31,6 +35,17 @@ app.use(transactionRoutes);
 
 // User routes
 app.use(userRoutes)
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.resolve(path.dirname(__filename), "..");
+
+
+
+app.use(express.static(path.join(__dirname, "client/dist")));
+
+app.get("*", (_, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "dist", "index.html"));
+})
 
 app.get('/', (_, res) => {
     res.json({
